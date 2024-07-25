@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 import numpy as np
 import pandas as pd
 import googlemaps
@@ -13,10 +10,6 @@ from gurobipy import GRB
 import networkx as nx
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-
-
-# In[2]:
-
 
 gmaps = googlemaps.Client(key = "ENTER YOUR API HERE")
 Locations = []
@@ -36,37 +29,17 @@ while (Entry != 'stop'):
         Locations.append(Entry)
     Entry = input("Enter place to visit:\n Enter 'stop' to stop\n")
 
-
-# In[3]:
-
-
 print(Locations)
-
-
-# In[4]:
-
 
 RemoveLoc = input("Remove any location? 'Y' for yes and 'N' for no\n")
 if RemoveLoc == 'Y':
     LocEntry = input("Enter Location:\n")
     Locations.remove(LocEntry)
 
-
-# In[5]:
-
-
 print(Locations)
-
-
-# In[6]:
-
 
 ImportedDistanceMatrix = np.genfromtxt("C:\TV\Distance.csv",delimiter=",")
 # ImportedDistanceMatrix
-
-
-# In[7]:
-
 
 DistanceMatrix = np.zeros((len(Locations),len(Locations)))
 
@@ -94,20 +67,6 @@ if RemoveLoc == 'Y':
                     else:
                         DistanceMatrix[i][j] = np.inf    
 
-
-# In[8]:
-
-
-# DistanceMatrix = np.zeros((len(Locations),len(Locations)))
-
-# for i in range(len(Locations)):
-#     for j in range(len(Locations)):
-#         if (TestGeoCode['rows'][i]['elements'][j]['status'] == 'OK'):
-#             DistanceMatrix[i][j] = TestGeoCode['rows'][i]['elements'][j]['distance']['value']/1000
-#         else:
-#             DistanceMatrix[i][j] = np.inf
-
-
 for i in range(len(Locations)):
     InfCount = 0
     for j in range(len(Locations)):
@@ -120,15 +79,7 @@ for i in range(len(Locations)):
     
 print(DistanceMatrix)
 
-
-# In[9]:
-
-
 print(Locations)
-
-
-# In[10]:
-
 
 SaveList = input("Save locations and distances?\nEnter 'Y' for yes 'N' for no\n")
 
@@ -142,10 +93,6 @@ if (SaveList == 'Y'):
     np.savetxt("C:\TV\Distance.csv", DistanceMatrix,
               delimiter=",")
     print("Distance file saved")
-
-
-# In[11]:
-
 
 model = gp.Model("RouteTSP")
 
@@ -206,10 +153,6 @@ if (model.Status == GRB.OPTIMAL):
     print(RouteString)
     print("The route takes",obj.getValue(),"kilometers.")
 
-
-# In[12]:
-
-
 RouteDistance = DistanceMatrix
 LocationDict = {i:Locations[i] for i in range(len(Locations))}
 
@@ -219,11 +162,6 @@ for i in range(len(Locations)):
             RouteDistance[i][j] *= xValue[i,j]
         else:
             RouteDistance[i][j] *= 0
-
-
-# In[13]:
-
-
 
 G = nx.from_numpy_array(RouteDistance)
 
@@ -241,19 +179,10 @@ plt.legend(handles=handles_dict,loc='right',bbox_to_anchor=(1.75,0.5))
 plt.figure(figsize=(8,20))
 plt.show()
 
-
-# In[14]:
-
-
 Latitudes = np.zeros(len(Locations))
 Longitudes = np.zeros(len(Locations))
 for i in range(len(Locations)):
     Latitudes[i] = gmaps.geocode(Locations[i])[0]['geometry']['location']['lat']
     Longitudes[i] = gmaps.geocode(Locations[i])[0]['geometry']['location']['lng']
-
-
-# In[ ]:
-
-
 
 
