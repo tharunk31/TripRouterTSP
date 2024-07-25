@@ -18,7 +18,7 @@ import matplotlib.patches as patches
 # In[2]:
 
 
-gmaps = googlemaps.Client(key = "AIzaSyD6VnsCMzmSzFi-pB2CuLs138ay_xOnseA")
+gmaps = googlemaps.Client(key = "ENTER YOUR API HERE")
 Locations = []
 
 ImportList = input("Load previously saved csv file location list?\nEnter'Y' for yes and 'N' for no\n")
