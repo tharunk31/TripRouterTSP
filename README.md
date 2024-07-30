@@ -1,7 +1,7 @@
 # TripRouterTSP
 Provides a route for road trip by taking in real world locations.
 
-Asks for user input for different locations. Computes road distances between them using Google DistanceMatrix API. Solves a Traveling Salesman Problem using an integer program formulation to get the shortest distance path from a starting location, visiting all locations once, and terminating back at the starting location.
+Asks for user input for different locations. Computes road distances between them using Google DistanceMatrix API. Solves a Traveling Salesman Problem using an integer program (Miller-Tucker-Zemlin) formulation to get the shortest distance path from a starting location, visiting all locations once, and terminating back at the starting location.
 
 You would need your Google DistanceMatrix API key and a Gurobi license.
 
