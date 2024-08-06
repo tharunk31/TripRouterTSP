@@ -7,6 +7,8 @@ You would need your Google DistanceMatrix API key and a Gurobi license.
 
 Just did it to see how a big road trip across the continental United States would look like.
 
+View the ipynb file with nbviewer ( https://nbviewer.org/ ) since some plots don't render well on github.
+
 TO DO:
 1. Try alternate methods to compute distances. Possibly approximate with Euclidean distances if only location data (i.e. latitude and longitude, maybe elevation) is freely available.
 2. Substitute PuLP instead of Gurobi. Or other free alternatives?
