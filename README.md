@@ -12,4 +12,3 @@ View the ipynb file with nbviewer ( https://nbviewer.org/ ) since some plots don
 TO DO:
 1. Try alternate methods to compute distances. Possibly approximate with Euclidean distances if only location data (i.e. latitude and longitude, maybe elevation) is freely available.
 2. Substitute PuLP instead of Gurobi. Or other free alternatives?
-3. Include heuristic or approximation methods if there are a large number of locations. Seems to work upto ~20 locations just fine. If not, consider removing locations too close to one another (when compared to others) if the solver takes too long to converge. 
